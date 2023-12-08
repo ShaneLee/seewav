@@ -287,7 +287,7 @@ def visualize(audio,
     ] + audio_cmd + [
         "-c:a", "aac",
          "-vcodec", "libx264",
-         "-crf", "10", "-pix_fmt", "yuv420p", "-shortest",
+         "-crf", "10", "-pix_fmt", "yuv420p",
         out.resolve()
     ],
            check=True,
