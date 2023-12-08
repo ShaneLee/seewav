@@ -282,12 +282,15 @@ def visualize(audio,
     print("Encoding the animation video... ")
     # https://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
     sp.run([
-        "ffmpeg", "-y", "-loglevel", "panic", "-r",
+        "ffmpeg", "-y",
+        "-loglevel", "panic", "-r",
         str(rate), "-f", "image2", "-s", f"{output_size[0]}x{output_size[1]}", "-i", "%06d.png"
     ] + audio_cmd + [
         "-c:a", "aac",
          "-vcodec", "libx264",
          "-crf", "10", "-pix_fmt", "yuv420p",
+        "-threads", "8",
+        "-preset", "veryfast",
         out.resolve()
     ],
            check=True,
