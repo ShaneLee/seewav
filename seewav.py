@@ -283,10 +283,11 @@ def visualize(audio,
     # https://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
     sp.run([
         "ffmpeg", "-y", "-loglevel", "panic", "-r",
-        "-preset ultrafast -threads 4",
         str(rate), "-f", "image2", "-s", f"{output_size[0]}x{output_size[1]}", "-i", "%06d.png"
     ] + audio_cmd + [
-        "-c:a", "aac", "-vcodec", "libx264", "-crf", "10", "-pix_fmt", "yuv420p", "-shortest",
+        "-c:a", "aac",
+         "-vcodec", "libx264",
+         "-crf", "10", "-pix_fmt", "yuv420p", "-shortest",
         out.resolve()
     ],
            check=True,
@@ -319,7 +320,7 @@ def parse_coords(coordsstr):
 def main():
     parser = argparse.ArgumentParser(
         'seewav', description="Generate a nice mp4 animation from an audio file.")
-    parser.add_argument("-r", "--rate", type=int, default=60, help="Video framerate.")
+    parser.add_argument("-r", "--rate", type=int, default=30, help="Video framerate.")
     parser.add_argument("--stereo", action='store_true',
                         help="Create 2 waveforms for stereo files.")
     parser.add_argument("-c",
