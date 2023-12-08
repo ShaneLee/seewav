@@ -222,9 +222,9 @@ def visualize(audio,
             fatal(err)
             raise
         # resize image to be compatible with ffmpeg
-        if image.width % 2 is 1:
+        if image.width % 2 == 1:
             image = image.resize(image.width + 1, image.height)
-        if image.height % 2 is 1:
+        if image.height % 2 == 1:
             image = image.resize(image.width, image.height + 1)
         output_size = image.width, image.height
 
@@ -283,6 +283,7 @@ def visualize(audio,
     # https://hamelot.io/visualization/using-ffmpeg-to-convert-a-set-of-images-into-a-video/
     sp.run([
         "ffmpeg", "-y", "-loglevel", "panic", "-r",
+        "-preset ultrafast -threads 4",
         str(rate), "-f", "image2", "-s", f"{output_size[0]}x{output_size[1]}", "-i", "%06d.png"
     ] + audio_cmd + [
         "-c:a", "aac", "-vcodec", "libx264", "-crf", "10", "-pix_fmt", "yuv420p", "-shortest",
