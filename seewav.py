@@ -303,7 +303,7 @@ def parse_color(colorstr):
     """
     try:
         r, g, b = [float(i) for i in colorstr.split(",")]
-        return r, g, b
+        return r / 255, g / 255, b / 255
     except ValueError:
         fatal("Format for color is 3 floats separated by commas 0.xx,0.xx,0.xx, rgb order")
         raise
