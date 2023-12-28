@@ -355,7 +355,7 @@ def main():
     parser.add_argument("-B",
                         "--bars",
                         type=int,
-                        default=50,
+                        default=75,
                         help="Number of bars on the video at once")
     parser.add_argument("-O", "--oversample", type=float, default=4,
                         help="Lower values will feel less reactive.")
@@ -366,7 +366,7 @@ def main():
     parser.add_argument("-W",
                         "--width",
                         type=int,
-                        default=480,
+                        default=1080,
                         help="width in pixels of the animation")
     parser.add_argument("-H",
                         "--height",
